@@ -1,0 +1,97 @@
+﻿name,name_ko,stage,type,personality,image_url,description,cute,cool,strong,dark,bright,kind,leader,mysterious
+Agumon,아구몬,성장기,용형,밝음|용감함|친근함,images/agumon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,80,60,70,20,90,85,75,30
+Gabumon,파피몬,성장기,디지몬,밝음|용감함|친근함,images/gabumon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,70,60,50,30,80,75,40,20
+Patamon,파닥몬,성장기,공룡형,밝음|용감함|친근함,images/patamon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,90,40,30,10,80,85,50,20
+Tentomon,텐타몬,성장기,천사형,밝음|용감함|친근함,images/tentomon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,80,40,30,10,70,90,50,20
+Palmon,팔몬,성장기,공룡형,밝음|용감함|친근함,images/palmon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,85,40,30,10,90,80,20,25
+Gatomon,가트몬,성숙기,공룡형,밝음|용감함|친근함,images/gatomon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,90,70,60,20,80,85,65,40
+Greymon,그레이몬,성숙기,식물형,용감함|친근함|강함,images/greymon.png,강력하고 용감한 분위기를 가진 친근한 디지몬입니다.,30,70,90,20,50,60,80,30
+Garurumon,가루몬,성숙기,천사형,용감함|친근함|신비로움,images/garurumon.png,강렬한 외형과 함께 용감하고 친근한 느낌을 주는 디지몬입니다.,30,80,70,40,50,60,70,60
+Angemon,엔젤몬,성숙기,곤충형,용감함|신비로움|친근함,images/angemon.png,강력하면서도 친근한 분위기를 가진 디지몬입니다.,20,80,90,40,60,70,85,75
+Devimon,데블몬,성숙기,용형,어둠|강함|신비로움,images/devimon.png,어두운 분위기와 강력한 힘을 지닌 신비로운 디지몬입니다.,10,80,90,95,5,15,70,85
+WarGreymon,워그레이몬,궁극체,식물형,용감함|강함|리더십,images/wargreymon.png,"강력하고 용감한 분위기를 지닌 디지몬으로, 전투에서의 리더십이 돋보입니다.",20,90,95,30,40,50,90,60
+MetalGarurumon,메탈가루몬,궁극체,디지몬,용감함|강함|친근함,images/metalgarurumon.png,강력하고 용감한 모습이 인상적인 디지몬입니다.,20,85,90,30,40,50,70,60
+Omnimon,오메가몬,궁극체,사이보그형,용감함|강함|리더십,images/omnimon.png,강력하고 카리스마 있는 분위기가 느껴지는 디지몬입니다.,20,90,95,30,40,50,90,60
+Veemon,브이몬,궁극체,식물형,밝음|용감함|친근함,images/veemon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,80,70,60,10,90,85,75,20
+Guilmon,길몬,성숙기,천사형,밝음|용감함|친근함,images/guilmon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,70,80,75,20,60,65,50,30
+Renamon,레나몬,성장기,마인형,신비로움|용감함|친근함,images/renamon.png,신비로운 분위기를 가진 용감하고 친근한 디지몬입니다.,60,80,70,30,50,70,60,90
+Impmon,임프몬,궁극체,디지몬,장난기|용감함|친근함,images/impmon.png,장난기 가득한 모습으로 용감하고 친근한 디지몬입니다.,70,60,50,40,50,60,30,40
+Terriermon,테리어몬,성숙기,마인형,밝음|용감함|친근함,images/terriermon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,90,50,40,10,80,85,60,20
+Angewomon,엔젤우몬,성장기,천사형,밝음|용감함|친근함,images/angewomon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,60,80,70,30,70,80,75,50
+LadyDevimon,레이디데블몬,성장기,디지몬,어둠|강함|신비로움,images/ladydevimon.png,어두운 분위기와 강력한 힘을 가진 신비로운 디지몬입니다.,10,80,70,90,20,15,60,85
+Koromon,Koromon,유년기,마인형,밝음|용감함|친근함,images/koromon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,90,30,20,10,80,85,25,15
+Tsunomon,Tsunomon,유년기,곤충형,밝음|용감함|친근함,images/tsunomon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,80,40,30,10,70,90,20,15
+Tokomon,Tokomon,유년기,곤충형,밝음|용감함|친근함,images/tokomon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,80,30,20,10,70,90,20,30
+Motimon,Motimon,유년기,천사형,밝음|용감함|친근함,images/motimon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,90,20,10,5,80,85,15,10
+Tanemon,Tanemon,유년기,마인형,밝음|용감함|친근함,images/tanemon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,90,20,10,5,85,80,15,10
+Salamon,Salamon,완전체,마인형,밝음|용감함|친근함,images/salamon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,90,30,20,10,80,85,40,20
+WereGarurumon,WereGarurumon,완전체,식물형,강함|용감함|친근함,images/weregarurumon.png,강하고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,30,80,90,60,40,70,75,50
+MagnaAngemon,MagnaAngemon,완전체,용형,밝음|용감함|친근함,images/magnaangemon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,20,90,85,30,70,60,80,40
+Lillymon,Lillymon,완전체,마인형,밝음|용감함|친근함,images/lillymon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,80,60,50,20,90,85,70,40
+Zudomon,Zudomon,성숙기,디지몬,강함|용감함|친근함,images/zudomon.png,강력하면서도 친근한 매력을 가진 디지몬입니다.,30,70,90,20,40,60,50,30
+Garudamon,Garudamon,성숙기,디지몬,용감함|강함|친근함,images/garudamon.png,강력하고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,30,80,90,20,60,70,85,40
+Phoenixmon,Phoenixmon,성숙기,천사형,밝음|용감함|친근함,images/phoenixmon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,30,80,90,20,70,60,75,40
+Seraphimon,Seraphimon,성장기,사이보그형,용감함|친절함|신비로움,images/seraphimon.png,강력하면서도 신비로운 분위기를 가진 디지몬입니다.,20,90,85,30,70,75,90,80
+Magnadramon,Magnadramon,성장기,마인형,용감함|신비로움|친근함,images/magnadramon.png,강렬하면서도 친근한 매력을 지닌 디지몬입니다.,30,80,70,40,50,60,75,65
+ExVeemon,ExVeemon,성장기,마인형,밝음|용감함|친근함,images/exveemon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,40,80,70,20,60,50,70,30
+Paildramon,Paildramon,궁극체,식물형,용감함|강함|친근함,images/paildramon.png,강력하면서도 친근한 매력을 지닌 디지몬입니다.,30,80,90,40,60,50,70,50
+Flamedramon,Flamedramon,성장기,공룡형,밝음|용감함|친근함,images/flamedramon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,40,85,80,20,70,60,75,30
+Raidramon,Raidramon,성숙기,식물형,용감함|강함|신비로움,images/raidramon.png,강력하고 신비로운 분위기를 가진 디지몬입니다.,20,80,90,70,30,40,60,75
+Magnamon,Magnamon,궁극체,마인형,용감함|강함|친근함,images/magnamon.png,강력하고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,20,90,95,30,70,60,85,40
+Wormmon,Wormmon,성장기,용형,밝음|용감함|친근함,images/wormmon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,90,30,20,10,80,85,20,15
+Stingmon,Stingmon,성숙기,식물형,용감함|강함|친근함,images/stingmon.png,강력하면서도 친근한 매력을 가진 디지몬입니다.,20,80,90,30,40,60,70,50
+Dinobeemon,Dinobeemon,완전체,곤충형,용감함|강함|신비로움,images/dinobeemon.png,강력하고 신비로운 분위기를 가진 디지몬입니다.,20,80,90,40,30,25,70,60
+Growlmon,Growlmon,완전체,짐승형,용감함|강함|친근함,images/growlmon.png,강렬한 외형과 용감한 분위기를 가진 친근한 디지몬입니다.,20,85,90,30,40,60,70,50
+WarGrowlmon,WarGrowlmon,완전체,공룡형,강함|용감함|친근함,images/wargrowlmon.png,강력하고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,20,85,90,30,40,50,70,60
+Gallantmon,Gallantmon,궁극체,디지몬,용감함|강함|리더십,images/gallantmon.png,"강력하고 용감한 분위기를 가진 디지몬으로, 리더십이 느껴집니다.",10,90,95,20,30,40,85,60
+Kyubimon,Kyubimon,완전체,천사형,밝음|용감함|친근함,images/kyubimon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,70,80,75,30,85,80,70,60
+Taomon,Taomon,궁극체,천사형,신비로움|강함|친근함,images/taomon.png,신비롭고 강력한 분위기를 지닌 친근한 디지몬입니다.,30,80,90,40,50,60,70,85
+Sakuyamon,Sakuyamon,성장기,마인형,용감함|신비로움|친근함,images/sakuyamon.png,강력하면서도 신비로운 분위기를 가진 디지몬입니다.,30,80,70,20,50,60,75,85
+Gargomon,Gargomon,완전체,천사형,밝음|용감함|친근함,images/gargomon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,70,60,80,20,70,75,65,30
+Rapidmon,Rapidmon,성장기,디지몬,밝음|용감함|친근함,images/rapidmon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,60,80,75,20,70,65,70,30
+MegaGargomon,MegaGargomon,궁극체,마인형,밝음|용감함|친근함,images/megagargomon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,70,80,90,20,75,85,70,30
+Beelzemon,Beelzemon,궁극체,용형,강함|어둠|신비로움,images/beelzemon.png,어둡고 강력한 분위기를 지닌 신비로운 디지몬입니다.,10,90,85,80,20,15,70,75
+MarineAngemon,MarineAngemon,궁극체,천사형,밝음|용감함|친근함,images/marineangemon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,90,40,30,10,80,85,20,15
+Guardromon,Guardromon,궁극체,곤충형,용감함|친근함|신뢰감,images/guardromon.png,강력한 외형을 가진 친근한 디지몬입니다.,20,80,90,10,40,60,70,30
+Andromon,Andromon,성숙기,사이보그형,강함|신비로움|용감함,images/andromon.png,강하고 신비로운 분위기를 가진 사이보그형 디지몬입니다.,10,85,90,70,20,30,75,80
+HiAndromon,HiAndromon,완전체,공룡형,강함|신비로움|리더십,images/hiandromon.png,강력하고 신비로운 분위기를 가진 디지몬입니다.,10,90,85,70,30,20,80,75
+Leomon,Leomon,성장기,용형,용감함|친근함|강함,images/leomon.png,강력하고 친근한 분위기를 가진 디지몬입니다.,20,80,90,30,40,70,75,20
+SaberLeomon,SaberLeomon,성숙기,식물형,용감함|친근함|강함,images/saberleomon.png,강력하고 용감한 모습이 인상적인 디지몬입니다.,30,80,90,20,40,60,70,30
+Ogremon,Ogremon,성장기,식물형,용감함|강함|친근함,images/ogremon.png,강력하면서도 친근한 매력을 가진 디지몬입니다.,20,70,85,60,30,40,50,30
+Numemon,Numemon,완전체,곤충형,유머러스|친근함|엉뚱함,images/numemon.png,엉뚱하고 유머러스한 매력을 가진 친근한 디지몬입니다.,40,20,30,10,70,60,10,20
+Sukamon,Sukamon,성장기,용형,유머러스|친근함|장난기,images/sukamon.png,장난기 가득한 모습으로 친근한 매력을 지닌 디지몬입니다.,60,30,40,20,70,80,20,10
+Etemon,Etemon,완전체,사이보그형,유머러스|자신감|친근함,images/etemon.png,유머러스하고 자신감 넘치는 분위기가 느껴지는 친근한 디지몬입니다.,30,70,80,20,60,50,60,40
+MetalEtemon,MetalEtemon,성숙기,디지몬,강함|자신감|유머러스함,images/metaletemon.png,강력하고 자신감 넘치는 분위기를 가진 유머러스한 디지몬입니다.,10,85,90,30,40,20,70,25
+Monzaemon,Monzaemon,성장기,사이보그형,밝음|용감함|친근함,images/monzaemon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,80,30,40,10,90,85,20,15
+ToyAgumon,ToyAgumon,완전체,사이보그형,밝음|용감함|친근함,images/toyagumon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,80,60,50,20,90,85,70,30
+BlackAgumon,BlackAgumon,궁극체,공룡형,강함|신비로움|용감함,images/blackagumon.png,어두운 색조와 강한 인상이 돋보이는 신비로운 디지몬입니다.,30,80,90,70,20,40,60,80
+BlackWarGreymon,BlackWarGreymon,성장기,디지몬,강함|신비로움|용감함,images/blackwargreymon.png,어두운 색조와 강력한 외형이 인상적인 디지몬입니다.,10,90,95,80,20,30,70,85
+SkullGreymon,SkullGreymon,성장기,공룡형,어둠|강함|신비로움,images/skullgreymon.png,어두운 분위기와 강력한 힘을 지닌 신비로운 디지몬입니다.,10,80,90,90,20,10,60,80
+Machinedramon,Machinedramon,궁극체,곤충형,강함|신비로움|위엄,images/machinedramon.png,강력하고 신비로운 분위기가 느껴지는 디지몬입니다.,10,90,95,70,20,15,85,80
+Myotismon,Myotismon,성장기,짐승형,어두움|신비로움|강함,images/myotismon.png,어두운 분위기와 신비로운 매력을 지닌 강력한 디지몬입니다.,10,80,90,90,20,10,70,85
+VenomMyotismon,VenomMyotismon,궁극체,마인형,어둠|강함|신비로움,images/venommyotismon.png,어두운 분위기와 강력한 힘을 지닌 신비로운 디지몬입니다.,10,90,95,85,15,20,70,80
+Piedmon,Piedmon,성숙기,식물형,신비로움|강함|어둠,images/piedmon.png,어두운 분위기와 신비로운 매력을 지닌 강력한 디지몬입니다.,20,80,90,85,10,15,70,90
+Puppetmon,Puppetmon,완전체,식물형,신비로움|위험함|친근함,images/puppetmon.png,어두운 매력을 지닌 신비로운 디지몬입니다.,20,70,60,80,30,40,50,90
+MetalSeadramon,MetalSeadramon,궁극체,천사형,강함|신비로움|용감함,images/metalseadramon.png,강력하고 신비로운 분위기를 지닌 디지몬입니다.,10,90,95,60,30,20,70,80
+Apocalymon,Apocalymon,성장기,곤충형,어둠|강함|신비로움,images/apocalymon.png,어두운 분위기와 강력한 힘을 지닌 신비로운 디지몬입니다.,10,90,95,85,15,20,70,90
+Diaboromon,Diaboromon,성장기,공룡형,어둠|강함|신비로움,images/diaboromon.png,어두운 분위기와 강력한 힘을 가진 신비로운 디지몬입니다.,10,80,90,85,20,15,70,75
+Keramon,Keramon,궁극체,식물형,신비로움|어둠|강함,images/keramon.png,어두운 분위기와 신비로운 매력을 지닌 디지몬입니다.,20,70,80,90,10,30,40,85
+Infermon,Infermon,성장기,짐승형,어두움|신비로움|강함,images/infermon.png,어두운 분위기와 신비로운 매력을 지닌 강력한 디지몬입니다.,10,80,70,90,20,15,50,85
+Armageddemon,Armageddemon,궁극체,식물형,어두움|강함|신비로움,images/armageddemon.png,어두운 분위기와 강력한 힘을 지닌 신비로운 디지몬입니다.,10,80,90,90,20,10,70,85
+Alphamon,Alphamon,궁극체,사이보그형,강함|신비로움|리더십,images/alphamon.png,강력하고 신비로운 분위기를 가진 디지몬입니다.,10,90,95,70,30,40,85,80
+UlforceVeedramon,UlforceVeedramon,성숙기,마인형,용감함|카리스마|친근함,images/ulforceveedramon.png,강력하고 카리스마 넘치는 모습이 인상적인 디지몬입니다.,20,90,85,30,40,60,80,50
+Dynasmon,Dynasmon,성장기,사이보그형,강함|신비로움|리더십,images/dynasmon.png,강력하고 신비로운 분위기를 가진 디지몬입니다.,10,90,85,70,30,20,80,75
+Craniamon,Craniamon,완전체,사이보그형,강함|용감함|신비로움,images/craniamon.png,강력하고 신비로운 분위기를 가진 디지몬입니다.,10,90,95,70,30,20,85,80
+Jesmon,Jesmon,완전체,공룡형,용감함|강함|리더십,images/jesmon.png,강력하고 카리스마 넘치는 분위기가 느껴지는 디지몬입니다.,20,90,95,40,30,50,85,60
+Gankoomon,Gankoomon,성장기,사이보그형,용감함|강함|리더십,images/gankoomon.png,강력하고 카리스마 있는 분위기를 지닌 디지몬입니다.,10,90,85,40,30,20,80,60
+Examon,Examon,궁극체,식물형,강함|신비로움|위엄,images/examon.png,강력하고 신비로운 분위기를 가진 디지몬입니다.,10,90,95,80,20,30,85,75
+Lucemon,Lucemon,궁극체,마인형,신비로움|강함|리더십,images/lucemon.png,강력하면서도 신비로운 분위기를 가진 디지몬입니다.,20,90,85,70,40,50,80,90
+Lilithmon,Lilithmon,완전체,공룡형,어두움|신비로움|강함,images/lilithmon.png,어두운 매력을 지닌 신비로운 디지몬입니다.,10,80,90,90,20,30,70,85
+Barbamon,Barbamon,성장기,천사형,어둠|신비로움|강함,images/barbamon.png,어두운 분위기와 신비로운 매력을 지닌 강력한 디지몬입니다.,10,80,90,85,20,15,70,90
+Daemon,Daemon,성장기,곤충형,어둠|강함|신비로움,images/daemon.png,어두운 분위기와 강력한 힘을 지닌 신비로운 디지몬입니다.,10,80,90,90,20,10,70,85
+Leviamon,Leviamon,성숙기,용형,강함|신비로움|위엄,images/leviamon.png,강력하고 신비로운 분위기를 가진 디지몬입니다.,10,85,90,70,30,20,75,80
+Crusadermon,Crusadermon,궁극체,마인형,용감함|강함|리더십,images/crusadermon.png,강력하고 용감한 분위기가 느껴지는 리더 같은 디지몬입니다.,20,85,90,30,40,50,80,60
+Dorumon,Dorumon,성장기,마인형,밝음|용감함|친근함,images/dorumon.png,밝고 용감한 분위기가 느껴지는 친근한 디지몬입니다.,80,70,60,20,75,85,65,50
+Dorugamon,Dorugamon,완전체,식물형,강함|신비로움|용감함,images/dorugamon.png,강력하고 신비로운 분위기를 지닌 디지몬입니다.,20,80,90,70,30,40,60,80
+DoruGreymon,DoruGreymon,성숙기,마인형,용감함|강함|친근함,images/dorugreymon.png,강력하고 용감한 분위기를 가진 친근한 디지몬입니다.,20,85,90,40,30,60,75,50
+Dorugoramon,Dorugoramon,궁극체,짐승형,강함|신비로움|용감함,images/dorugoramon.png,강력하고 신비로운 분위기가 느껴지는 디지몬입니다.,10,90,95,70,30,20,85,80

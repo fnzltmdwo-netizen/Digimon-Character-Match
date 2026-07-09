@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>   
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIGIMON AI MATCH SYSTEM</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <main class="layout">
+    <section class="main-panel">
+      <div class="system-label">DIGIMON AI MATCH SYSTEM</div>
+
+      <h1>
+        FIND YOUR<br />
+        <span>DIGIMON</span>
+      </h1>
+
+      <p class="desc">
+        얼굴 데이터를 스캔해서<br />
+        가장 닮은 디지몬과 진화 루트를 찾아드립니다.
+      </p>
+
+      <label class="upload-zone" for="imageInput" id="preview">
+        <div>
+          <strong>PHOTO UPLOAD</strong>
+          <p>Click to select your image</p>
+        </div>
+      </label>
+
+      <input type="file" id="imageInput" accept="image/*" hidden />
+
+      <button id="analyzeBtn" onclick="analyzeImage()">
+        ⚡ ANALYZE NOW
+      </button>
+    </section>
+
+    <section class="scan-panel" id="loadingBox">
+      <div class="scan-title" id="loadingText">DIGIVICE CONNECTING...</div>
+      <div class="scan-bar">
+        <div class="scan-fill" id="barFill"></div>
+      </div>
+      <div class="percent" id="percentText">0%</div>
+    </section>
+
+    <section class="result-panel" id="resultBox"></section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
