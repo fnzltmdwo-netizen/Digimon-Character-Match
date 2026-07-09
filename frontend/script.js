@@ -177,6 +177,16 @@ function toggleCandidates() {
   list.classList.toggle("open");
 }
 
+function showCards() {
+  setTimeout(() => {
+    document.querySelectorAll(".card").forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add("show");
+      }, index * 250);
+    });
+  }, 120);
+}
+
 function renderResult(data) {
   window.currentResultId = data.result_id;
 
@@ -186,13 +196,6 @@ function renderResult(data) {
     resultBox.style.display = "block";
     resultBox.innerHTML = "❌ 결과를 찾을 수 없어요.";
     return;
-    setTimeout(() => {
-  document.querySelectorAll(".card").forEach((card, index) => {
-    setTimeout(() => {
-      card.classList.add("show");
-    }, index * 250);
-  });
-}, 120);
   }
 
   const userName = data.user_name || getUserName();
@@ -221,17 +224,21 @@ function renderResult(data) {
       <p class="reason">${first.reason || ""}</p>
     </div>
 
-    <div class="evolution-box">
-      <h3>🔥 EVOLUTION ROUTE</h3>
-      <div class="evolution-route">${evolutionHtml}</div>
-    </div>
-
-    <div class="face-box">
-      <h3>🧠 FACE ANALYSIS</h3>
-      ${formatFaceAnalysis(data.face_analysis)}
+    <div class="top3-title">
+      🏆 ${userName}님의 디지몬 닮은꼴 TOP3
     </div>
 
     ${cards}
+
+    <div class="action-row">
+      <button class="share-btn" onclick="shareResultCard()">
+        💬 결과 링크 공유
+      </button>
+
+      <button class="retry-btn" onclick="resetTest()">
+        🔄 다시하기
+      </button>
+    </div>
 
     <div class="candidate-box">
       <button class="candidate-toggle" onclick="toggleCandidates()">
@@ -243,16 +250,18 @@ function renderResult(data) {
       </div>
     </div>
 
-    <div class="action-row">
-      <button class="share-btn" onclick="shareResultCard()">
-        💬 결과 링크 공유
-      </button>
+    <div class="evolution-box">
+      <h3>🔥 EVOLUTION ROUTE</h3>
+      <div class="evolution-route">${evolutionHtml}</div>
+    </div>
 
-      <button class="retry-btn" onclick="resetTest()">
-        🔄 다시하기
-      </button>
+    <div class="face-box">
+      <h3>🧠 FACE ANALYSIS</h3>
+      ${formatFaceAnalysis(data.face_analysis)}
     </div>
   `;
+
+  showCards();
 }
 
 function resetTest() {

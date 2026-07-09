@@ -886,3 +886,14 @@ button {
   font-size: 22px;
   color: rgba(255, 255, 255, 0.78);
 }
+.top3-title {
+  margin: 24px 0 14px;
+  padding: 16px;
+  border: 1px solid rgba(0, 234, 255, 0.45);
+  background: rgba(0, 234, 255, 0.08);
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 900;
+  text-align: center;
+  border-radius: 18px;
+}

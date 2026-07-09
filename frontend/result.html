@@ -193,10 +193,14 @@
     }
 
     function getImageSrc(imageUrl) {
-      if (!imageUrl) return "";
-      if (imageUrl.startsWith("http")) return imageUrl;
-      return imageUrl.replace(/^\\/+/, "");
-    }
+  if (!imageUrl) return "";
+
+  if (imageUrl.startsWith("http")) {
+    return imageUrl;
+  }
+
+  return imageUrl.replace(/^\/+/, "");
+}
 
     function getResultId() {
       const params = new URLSearchParams(window.location.search);
