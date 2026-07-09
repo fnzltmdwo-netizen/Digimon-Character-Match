@@ -238,8 +238,8 @@ function renderResult(data) {
     </div>
 
     <div class="action-row">
-      <button class="share-btn" onclick="saveShareCard()">
-        📸 결과 이미지 저장
+      <button class="share-btn" onclick="shareResultCard()">
+        💬 결과 이미지 공유
       </button>
 
       <button class="retry-btn" onclick="resetTest()">
@@ -348,36 +348,69 @@ async function saveResultImage() {
   link.click();
 }
 
-function createShareCard() {
-  const first = document.querySelector(".hero-result h1")?.innerText || "디지몬";
-  const score = document.querySelector(".hero-result .score")?.innerText || "";
-  const img = document.querySelector(".champion-img")?.src || "";
+function createShareCardHtml() {
+  const cards = Array.from(document.querySelectorAll(".card")).slice(0, 3);
+
+  const top3Html = cards.map((card, index) => {
+    const name = card.querySelector("h2")?.innerText || `TOP ${index + 1}`;
+    const img = card.querySelector("img")?.src || "";
+    const score = card.querySelector(".score")?.innerText || "";
+
+    return `
+      <div class="share-rank-card">
+        <div class="share-rank">TOP ${index + 1}</div>
+        <img src="${img}" />
+        <div class="share-name">${name.replace("🥇", "").replace("🥈", "").replace("🥉", "").trim()}</div>
+        <div class="share-score">${score}</div>
+      </div>
+    `;
+  }).join("");
 
   return `
-    <div id="shareCard" class="share-card">
+    <div id="shareCard" class="share-card share-card-wide">
       <div class="share-label">DIGIMON MATCH RESULT</div>
-      <img src="${img}" />
-      <h1>${first}</h1>
-      <h2>${score}</h2>
-      <p>나와 가장 닮은 디지몬!</p>
+      <h1>나의 디지몬 닮은꼴 TOP 3</h1>
+      <div class="share-top3">
+        ${top3Html}
+      </div>
+      <p>AI가 분석한 나와 가장 닮은 디지몬 결과!</p>
     </div>
   `;
 }
 
-async function saveShareCard() {
-  document.body.insertAdjacentHTML("beforeend", createShareCard());
+async function shareResultCard() {
+  document.body.insertAdjacentHTML("beforeend", createShareCardHtml());
 
   const target = document.getElementById("shareCard");
 
   const canvas = await html2canvas(target, {
     backgroundColor: "#030712",
-    scale: 2
+    scale: 2,
+    useCORS: true
   });
 
-  const link = document.createElement("a");
-  link.download = "digimon_share_card.png";
-  link.href = canvas.toDataURL("image/png");
-  link.click();
+  const blob = await new Promise(resolve => {
+    canvas.toBlob(resolve, "image/png");
+  });
+
+  const file = new File([blob], "digimon_match_result.png", {
+    type: "image/png"
+  });
 
   target.remove();
+
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    await navigator.share({
+      title: "디지몬 닮은꼴 테스트",
+      text: "내 디지몬 닮은꼴 TOP 3 결과야!",
+      files: [file]
+    });
+  } else {
+    const link = document.createElement("a");
+    link.download = "digimon_match_result.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+
+    alert("이 브라우저에서는 직접 공유가 안 돼서 이미지로 저장했어. 카톡에 올리면 돼!");
+  }
 }
