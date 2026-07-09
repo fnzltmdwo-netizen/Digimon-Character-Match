@@ -10,6 +10,8 @@ const barFill = document.getElementById("barFill");
 const percentText = document.getElementById("percentText");
 const resultBox = document.getElementById("resultBox");
 
+window.currentResultId = null;
+
 function getUserName() {
   return userNameInput?.value?.trim() || "친구";
 }
@@ -176,6 +178,8 @@ function toggleCandidates() {
 }
 
 function renderResult(data) {
+  window.currentResultId = data.result_id;
+
   const results = data.results || [];
 
   if (results.length === 0) {
@@ -184,7 +188,7 @@ function renderResult(data) {
     return;
   }
 
-  const userName = getUserName();
+  const userName = data.user_name || getUserName();
   const first = results[0];
   const firstName = getDisplayName(first);
 
@@ -234,7 +238,7 @@ function renderResult(data) {
 
     <div class="action-row">
       <button class="share-btn" onclick="shareResultCard()">
-        💬 결과 이미지 공유
+        💬 결과 링크 공유
       </button>
 
       <button class="retry-btn" onclick="resetTest()">
@@ -242,17 +246,10 @@ function renderResult(data) {
       </button>
     </div>
   `;
-
-  setTimeout(() => {
-    document.querySelectorAll(".card").forEach((card, index) => {
-      setTimeout(() => {
-        card.classList.add("show");
-      }, index * 250);
-    });
-  }, 120);
 }
 
 function resetTest() {
+  window.currentResultId = null;
   imageInput.value = "";
   userNameInput.value = "";
 
@@ -286,6 +283,7 @@ async function analyzeImage() {
 
   const formData = new FormData();
   formData.append("file", file);
+  formData.append("user_name", getUserName());
 
   try {
     const response = await fetch(`${API_URL}/match`, {
@@ -321,79 +319,29 @@ async function analyzeImage() {
   }
 }
 
-function createShareCardHtml() {
-  const userName = getUserName();
-  const cards = Array.from(document.querySelectorAll(".card")).slice(0, 3);
-
-  const top3Html = cards.map((card, index) => {
-    const rawName = card.querySelector("h2")?.innerText || `TOP ${index + 1}`;
-    const img = card.querySelector("img")?.src || "";
-    const score = card.querySelector(".score")?.innerText || "";
-
-    const cleanName = rawName
-      .replace("🥇", "")
-      .replace("🥈", "")
-      .replace("🥉", "")
-      .trim();
-
-    return `
-      <div class="share-rank-card">
-        <div class="share-rank">TOP ${index + 1}</div>
-        <img src="${img}" />
-        <div class="share-name">${cleanName}</div>
-        <div class="share-score">${score}</div>
-      </div>
-    `;
-  }).join("");
-
-  return `
-    <div id="shareCard" class="share-card share-card-wide">
-      <div class="share-label">DIGIMON MATCH RESULT</div>
-      <h1>${userName}님의 결과가 도착했습니다</h1>
-      <h2>나의 디지몬 닮은꼴 TOP 3</h2>
-      <div class="share-top3">
-        ${top3Html}
-      </div>
-      <p>AI가 분석한 나와 가장 닮은 디지몬 결과!</p>
-    </div>
-  `;
-}
-
 async function shareResultCard() {
-  document.body.insertAdjacentHTML("beforeend", createShareCardHtml());
+  const resultId = window.currentResultId;
 
-  const target = document.getElementById("shareCard");
+  if (!resultId) {
+    alert("공유할 결과가 없어요!");
+    return;
+  }
 
-  const canvas = await html2canvas(target, {
-    backgroundColor: "#030712",
-    scale: 2,
-    useCORS: true
-  });
-
-  const blob = await new Promise(resolve => {
-    canvas.toBlob(resolve, "image/png");
-  });
-
-  const file = new File([blob], "digimon_match_result.png", {
-    type: "image/png"
-  });
-
+  const shareUrl = `${window.location.origin}/result.html?id=${resultId}`;
   const userName = getUserName();
 
-  target.remove();
-
-  if (navigator.canShare && navigator.canShare({ files: [file] })) {
-    await navigator.share({
-      title: "디지몬 닮은꼴 테스트",
-      text: `${userName}님의 디지몬 닮은꼴 TOP3 결과가 도착했습니다!`,
-      files: [file]
-    });
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "디지몬 닮은꼴 테스트",
+        text: `${userName}님의 디지몬 닮은꼴 결과가 도착했습니다!`,
+        url: shareUrl
+      });
+    } catch (e) {
+      console.log("공유 취소 또는 실패:", e);
+    }
   } else {
-    const link = document.createElement("a");
-    link.download = "digimon_match_result.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-
-    alert("PC에서는 바로 공유가 제한돼서 이미지로 저장했어. 모바일에서는 공유창이 뜰 수 있어!");
+    await navigator.clipboard.writeText(shareUrl);
+    alert("결과 링크가 복사됐어! 카톡에 붙여넣으면 돼.");
   }
 }

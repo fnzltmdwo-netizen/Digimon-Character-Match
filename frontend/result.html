@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>디지몬 닮은꼴 결과</title>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="🐉 디지몬 닮은꼴 결과가 도착했습니다!" />
+  <meta property="og:description" content="AI가 분석한 디지몬 닮은꼴 TOP3 결과를 확인해보세요." />
+  <meta property="og:image" content="https://name-digimon-character-match-frontend.onrender.com/og-image.png" />
+  <meta property="og:site_name" content="디지몬 닮은꼴 테스트" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="🐉 디지몬 닮은꼴 결과가 도착했습니다!" />
+  <meta name="twitter:description" content="AI가 분석한 나와 닮은 디지몬 TOP3!" />
+  <meta name="twitter:image" content="https://name-digimon-character-match-frontend.onrender.com/og-image.png" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .result-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px 18px 80px;
+      text-align: center;
+      color: white;
+    }
+
+    .result-page-title {
+      margin: 24px 0 22px;
+      padding: 24px;
+      border: 1px solid rgba(0, 234, 255, 0.45);
+      border-radius: 24px;
+      background: rgba(3, 7, 18, 0.76);
+      box-shadow: 0 0 34px rgba(0, 234, 255, 0.18);
+    }
+
+    .result-page-title .small {
+      color: #00eaff;
+      font-weight: 900;
+      letter-spacing: 1px;
+      font-size: 13px;
+    }
+
+    .result-page-title h1 {
+      margin: 12px 0 8px;
+      font-size: 34px;
+    }
+
+    .result-page-title p {
+      color: rgba(255,255,255,0.72);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .top3-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .top-result-card {
+      border-radius: 26px;
+      padding: 24px 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(0,234,255,0.45);
+      box-shadow: 0 12px 34px rgba(0,0,0,0.32);
+    }
+
+    .top-result-card.rank1 {
+      border: 2px solid #ffb000;
+      background:
+        radial-gradient(circle at top, rgba(255,176,0,0.22), transparent 35%),
+        rgba(255,255,255,0.09);
+    }
+
+    .top-result-card .rank-label {
+      color: #ffb000;
+      font-weight: 900;
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .top-result-card img {
+      width: 220px;
+      height: 220px;
+      object-fit: contain;
+      background: white;
+      border-radius: 22px;
+      padding: 14px;
+      box-sizing: border-box;
+    }
+
+    .top-result-card h2 {
+      margin: 18px 0 8px;
+      font-size: 32px;
+    }
+
+    .top-result-card .score {
+      color: #ff8a00;
+      font-size: 32px;
+      font-weight: 900;
+      margin: 8px 0;
+    }
+
+    .top-result-card .reason {
+      color: rgba(255,255,255,0.82);
+      line-height: 1.7;
+      margin-top: 12px;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .result-actions button,
+    .result-actions a {
+      border: none;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 14px 20px;
+      font-weight: 900;
+      cursor: pointer;
+      color: #030712;
+      background: #00eaff;
+      box-shadow: 0 0 20px rgba(0,234,255,0.28);
+    }
+
+    .result-actions .secondary {
+      background: #ffb000;
+    }
+
+    .error-box {
+      margin-top: 40px;
+      padding: 24px;
+      border-radius: 20px;
+      background: rgba(255, 80, 80, 0.12);
+      border: 1px solid rgba(255, 80, 80, 0.45);
+      color: white;
+    }
+
+    @media (min-width: 760px) {
+      .top3-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .top-result-card img {
+        width: 180px;
+        height: 180px;
+      }
+
+      .top-result-card h2 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <main class="result-page">
+    <section class="result-page-title" id="titleBox">
+      <div class="small">DIGIMON MATCH RESULT</div>
+      <h1>결과를 불러오는 중...</h1>
+      <p>잠시만 기다려줘!</p>
+    </section>
+
+    <section class="top3-grid" id="top3Box"></section>
+
+    <div class="result-actions">
+      <button onclick="shareThisResult()">💬 이 결과 공유하기</button>
+      <a class="secondary" href="./index.html">🔄 나도 테스트하기</a>
+    </div>
+  </main>
+
+  <script>
+    const API_URL = "https://digimon-character-match.onrender.com";
+
+    const titleBox = document.getElementById("titleBox");
+    const top3Box = document.getElementById("top3Box");
+
+    function getDisplayName(item) {
+      return item.name_ko || item.name || "";
+    }
+
+    function getImageSrc(imageUrl) {
+      if (!imageUrl) return "";
+      if (imageUrl.startsWith("http")) return imageUrl;
+      return imageUrl.replace(/^\\/+/, "");
+    }
+
+    function getResultId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("id");
+    }
+
+    function renderResult(data) {
+      const userName = data.user_name || "친구";
+      const results = data.results || [];
+
+      titleBox.innerHTML = `
+        <div class="small">DIGIMON MATCH RESULT</div>
+        <h1>${userName}님의 결과가 도착했습니다!</h1>
+        <p>AI가 분석한 디지몬 닮은꼴 TOP3를 확인해보세요.</p>
+      `;
+
+      top3Box.innerHTML = results.slice(0, 3).map((item, index) => {
+        const displayName = getDisplayName(item);
+        const medal = index === 0 ? "🥇" : index === 1 ? "🥈" : "🥉";
+
+        return `
+          <article class="top-result-card ${index === 0 ? "rank1" : ""}">
+            <div class="rank-label">${medal} TOP ${index + 1}</div>
+
+            <img
+              src="${getImageSrc(item.image_url)}"
+              alt="${displayName}"
+              onerror="this.src='https://placehold.co/300x300/fff7e6/ff7a00?text=${encodeURIComponent(displayName)}';"
+            />
+
+            <h2>${displayName}</h2>
+            <div class="score">${item.score}%</div>
+            <p class="reason">${item.reason || item.description || ""}</p>
+          </article>
+        `;
+      }).join("");
+    }
+
+    async function loadResult() {
+      const id = getResultId();
+
+      if (!id) {
+        titleBox.innerHTML = `
+          <div class="error-box">
+            ❌ 결과 ID가 없습니다.
+          </div>
+        `;
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_URL}/result/${id}`);
+        const json = await response.json();
+
+        if (!json.success) {
+          titleBox.innerHTML = `
+            <div class="error-box">
+              ❌ ${json.message || "결과를 찾을 수 없습니다."}
+            </div>
+          `;
+          return;
+        }
+
+        renderResult(json.data);
+
+      } catch (error) {
+        console.error(error);
+        titleBox.innerHTML = `
+          <div class="error-box">
+            ❌ 결과를 불러오지 못했어요.
+          </div>
+        `;
+      }
+    }
+
+    async function shareThisResult() {
+      const url = window.location.href;
+
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: "디지몬 닮은꼴 결과",
+            text: "디지몬 닮은꼴 TOP3 결과가 도착했습니다!",
+            url
+          });
+        } catch (e) {
+          console.log("공유 취소 또는 실패:", e);
+        }
+      } else {
+        await navigator.clipboard.writeText(url);
+        alert("링크가 복사됐어! 카톡에 붙여넣으면 돼.");
+      }
+    }
+
+    loadResult();
+  </script>
+</body>
+</html>

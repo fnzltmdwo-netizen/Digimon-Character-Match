@@ -1,11 +1,12 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 from io import BytesIO
 from pathlib import Path
+from datetime import datetime
 import pandas as pd
-import os
 import json
+import uuid
 
 from vision import analyze_face, final_select_top3
 from matcher import match_candidates
@@ -24,6 +25,8 @@ app.add_middleware(
 
 BASE_DIR = Path(__file__).resolve().parent
 CSV_PATH = BASE_DIR / "digimon_ai.csv"
+SAVED_DIR = BASE_DIR / "saved_results"
+SAVED_DIR.mkdir(exist_ok=True)
 
 
 def load_digimon():
@@ -79,6 +82,28 @@ def parse_gpt_top3(raw_text):
         return []
 
 
+def save_result_json(user_name, face_analysis, evolution_route, candidates, results, image_info):
+    result_id = uuid.uuid4().hex[:8]
+
+    data = {
+        "id": result_id,
+        "user_name": user_name or "친구",
+        "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "face_analysis": face_analysis,
+        "evolution_route": evolution_route,
+        "candidates": candidates,
+        "results": results,
+        "image_info": image_info,
+    }
+
+    file_path = SAVED_DIR / f"{result_id}.json"
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+    return result_id
+
+
 @app.get("/")
 def root():
     digimon_list = load_digimon()
@@ -101,6 +126,7 @@ def status():
         "csv_exists": CSV_PATH.exists(),
         "csv_path": str(CSV_PATH),
         "digimon_count": len(digimon_list),
+        "saved_result_dir": str(SAVED_DIR),
     }
 
 
@@ -114,8 +140,30 @@ def get_digimon():
     }
 
 
+@app.get("/result/{result_id}")
+def get_saved_result(result_id: str):
+    file_path = SAVED_DIR / f"{result_id}.json"
+
+    if not file_path.exists():
+        return {
+            "success": False,
+            "message": "결과를 찾을 수 없습니다.",
+        }
+
+    with open(file_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    return {
+        "success": True,
+        "data": data,
+    }
+
+
 @app.post("/match")
-async def match_digimon(file: UploadFile = File(...)):
+async def match_digimon(
+    file: UploadFile = File(...),
+    user_name: str = Form("친구"),
+):
     try:
         image_bytes = await file.read()
         image = Image.open(BytesIO(image_bytes)).convert("RGB")
@@ -131,7 +179,6 @@ async def match_digimon(file: UploadFile = File(...)):
             }
 
         face_analysis = analyze_face(image_bytes)
-
         candidates = match_candidates(face_analysis, digimon_list, limit=10)
 
         if len(candidates) == 0:
@@ -173,18 +220,34 @@ async def match_digimon(file: UploadFile = File(...)):
                 if len(final_results) == 3:
                     break
 
+        image_info = {
+            "filename": file.filename,
+            "width": image.width,
+            "height": image.height,
+            "mode": image.mode,
+        }
+
+        evolution_route = get_evolution_route(final_results[0]["name"]) if final_results else []
+
+        result_id = save_result_json(
+            user_name=user_name,
+            face_analysis=face_analysis,
+            evolution_route=evolution_route,
+            candidates=candidates,
+            results=final_results,
+            image_info=image_info,
+        )
+
         return {
             "success": True,
             "message": "디지몬 닮은꼴 분석 완료!",
+            "result_id": result_id,
+            "user_name": user_name,
+            "share_url": f"/result.html?id={result_id}",
             "face_analysis": face_analysis,
-            "evolution_route": get_evolution_route(final_results[0]["name"]) if final_results else [],
+            "evolution_route": evolution_route,
             "candidates": candidates,
-            "image_info": {
-                "filename": file.filename,
-                "width": image.width,
-                "height": image.height,
-                "mode": image.mode,
-            },
+            "image_info": image_info,
             "results": final_results,
         }
 
