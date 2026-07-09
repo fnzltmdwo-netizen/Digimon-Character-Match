@@ -346,18 +346,37 @@ async function shareResultCard() {
   const shareUrl = `${window.location.origin}/result.html?id=${resultId}`;
   const userName = getUserName();
 
+  const cards = Array.from(document.querySelectorAll(".card")).slice(0, 3);
+
+  const topNames = cards.map((card) => {
+    return card.querySelector("h2")?.innerText
+      .replace("🥇", "")
+      .replace("🥈", "")
+      .replace("🥉", "")
+      .trim();
+  });
+
+  const shareText = `${userName}님의 디지몬 닮은꼴 결과가 도착했어요! 🎉
+
+🥇 ${topNames[0] || "1위 디지몬"}
+🥈 ${topNames[1] || "2위 디지몬"}
+🥉 ${topNames[2] || "3위 디지몬"}
+
+결과 확인하기👇
+${shareUrl}`;
+
   if (navigator.share) {
     try {
       await navigator.share({
-        title: "디지몬 닮은꼴 테스트",
-        text: `${userName}님의 디지몬 닮은꼴 결과가 도착했습니다!`,
+        title: `${userName}님의 디지몬 닮은꼴 결과`,
+        text: shareText,
         url: shareUrl
       });
     } catch (e) {
       console.log("공유 취소 또는 실패:", e);
     }
   } else {
-    await navigator.clipboard.writeText(shareUrl);
-    alert("결과 링크가 복사됐어! 카톡에 붙여넣으면 돼.");
+    await navigator.clipboard.writeText(shareText);
+    alert("공유 문구가 복사됐어! 카톡에 붙여넣으면 돼.");
   }
 }
