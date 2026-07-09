@@ -186,6 +186,13 @@ function renderResult(data) {
     resultBox.style.display = "block";
     resultBox.innerHTML = "❌ 결과를 찾을 수 없어요.";
     return;
+    setTimeout(() => {
+  document.querySelectorAll(".card").forEach((card, index) => {
+    setTimeout(() => {
+      card.classList.add("show");
+    }, index * 250);
+  });
+}, 120);
   }
 
   const userName = data.user_name || getUserName();
