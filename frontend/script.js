@@ -1,5 +1,6 @@
 const API_URL = "https://digimon-character-match.onrender.com";
 
+const userNameInput = document.getElementById("userNameInput");
 const imageInput = document.getElementById("imageInput");
 const preview = document.getElementById("preview");
 const analyzeBtn = document.getElementById("analyzeBtn");
@@ -9,17 +10,17 @@ const barFill = document.getElementById("barFill");
 const percentText = document.getElementById("percentText");
 const resultBox = document.getElementById("resultBox");
 
+function getUserName() {
+  return userNameInput?.value?.trim() || "친구";
+}
+
 function getDisplayName(item) {
   return item.name_ko || item.name || "";
 }
 
 function getImageSrc(imageUrl) {
   if (!imageUrl) return "";
-
-  if (imageUrl.startsWith("http")) {
-    return imageUrl;
-  }
-
+  if (imageUrl.startsWith("http")) return imageUrl;
   return imageUrl.replace(/^\/+/, "");
 }
 
@@ -95,19 +96,12 @@ function startLoadingAnimation() {
 
   const timer = setInterval(() => {
     percent += Math.floor(Math.random() * 9) + 4;
-
-    if (percent > 96) {
-      percent = 96;
-    }
+    if (percent > 96) percent = 96;
 
     barFill.style.width = `${percent}%`;
     percentText.innerText = `${percent}%`;
 
-    const index = Math.min(
-      Math.floor(percent / 22),
-      messages.length - 1
-    );
-
+    const index = Math.min(Math.floor(percent / 22), messages.length - 1);
     loadingText.innerText = messages[index];
   }, 350);
 
@@ -178,7 +172,6 @@ function buildCandidates(candidates) {
 function toggleCandidates() {
   const list = document.getElementById("candidateList");
   if (!list) return;
-
   list.classList.toggle("open");
 }
 
@@ -191,8 +184,10 @@ function renderResult(data) {
     return;
   }
 
+  const userName = getUserName();
   const first = results[0];
   const firstName = getDisplayName(first);
+
   const evolutionHtml = buildEvolutionRoute(data.evolution_route || []);
   const cards = buildCards(results);
   const candidateHtml = buildCandidates(data.candidates || []);
@@ -209,7 +204,7 @@ function renderResult(data) {
         onerror="this.src='https://placehold.co/420x420/030712/00eaff?text=${encodeURIComponent(firstName)}';"
       />
 
-      <h2>YOUR DIGIMON</h2>
+      <h2>${userName}님의 DIGIMON</h2>
       <h1>${firstName}</h1>
       <p class="score">${first.score}% MATCH</p>
       <p class="reason">${first.reason || ""}</p>
@@ -259,12 +254,15 @@ function renderResult(data) {
 
 function resetTest() {
   imageInput.value = "";
+  userNameInput.value = "";
+
   preview.innerHTML = `
     <div>
       <strong>PHOTO UPLOAD</strong>
       <p>Click to select your image</p>
     </div>
   `;
+
   resultBox.style.display = "none";
   loadingBox.style.display = "none";
   barFill.style.width = "0%";
@@ -323,44 +321,26 @@ async function analyzeImage() {
   }
 }
 
-function copyResultText() {
-  const firstName = document.querySelector(".hero-result h1")?.innerText || "디지몬";
-  const score = document.querySelector(".hero-result .score")?.innerText || "";
-
-  const text = `🐉 내 디지몬 닮은꼴 결과는 ${firstName}! ${score}`;
-
-  navigator.clipboard.writeText(text)
-    .then(() => alert("결과가 복사됐어!"))
-    .catch(() => alert("복사 실패!"));
-}
-
-async function saveResultImage() {
-  const target = document.querySelector(".result-panel");
-
-  const canvas = await html2canvas(target, {
-    backgroundColor: "#030712",
-    scale: 2
-  });
-
-  const link = document.createElement("a");
-  link.download = "digimon_result.png";
-  link.href = canvas.toDataURL("image/png");
-  link.click();
-}
-
 function createShareCardHtml() {
+  const userName = getUserName();
   const cards = Array.from(document.querySelectorAll(".card")).slice(0, 3);
 
   const top3Html = cards.map((card, index) => {
-    const name = card.querySelector("h2")?.innerText || `TOP ${index + 1}`;
+    const rawName = card.querySelector("h2")?.innerText || `TOP ${index + 1}`;
     const img = card.querySelector("img")?.src || "";
     const score = card.querySelector(".score")?.innerText || "";
+
+    const cleanName = rawName
+      .replace("🥇", "")
+      .replace("🥈", "")
+      .replace("🥉", "")
+      .trim();
 
     return `
       <div class="share-rank-card">
         <div class="share-rank">TOP ${index + 1}</div>
         <img src="${img}" />
-        <div class="share-name">${name.replace("🥇", "").replace("🥈", "").replace("🥉", "").trim()}</div>
+        <div class="share-name">${cleanName}</div>
         <div class="share-score">${score}</div>
       </div>
     `;
@@ -369,7 +349,8 @@ function createShareCardHtml() {
   return `
     <div id="shareCard" class="share-card share-card-wide">
       <div class="share-label">DIGIMON MATCH RESULT</div>
-      <h1>나의 디지몬 닮은꼴 TOP 3</h1>
+      <h1>${userName}님의 결과가 도착했습니다</h1>
+      <h2>나의 디지몬 닮은꼴 TOP 3</h2>
       <div class="share-top3">
         ${top3Html}
       </div>
@@ -397,12 +378,14 @@ async function shareResultCard() {
     type: "image/png"
   });
 
+  const userName = getUserName();
+
   target.remove();
 
   if (navigator.canShare && navigator.canShare({ files: [file] })) {
     await navigator.share({
       title: "디지몬 닮은꼴 테스트",
-      text: "내 디지몬 닮은꼴 TOP 3 결과야!",
+      text: `${userName}님의 디지몬 닮은꼴 TOP3 결과가 도착했습니다!`,
       files: [file]
     });
   } else {
@@ -411,6 +394,6 @@ async function shareResultCard() {
     link.href = canvas.toDataURL("image/png");
     link.click();
 
-    alert("이 브라우저에서는 직접 공유가 안 돼서 이미지로 저장했어. 카톡에 올리면 돼!");
+    alert("PC에서는 바로 공유가 제한돼서 이미지로 저장했어. 모바일에서는 공유창이 뜰 수 있어!");
   }
 }
